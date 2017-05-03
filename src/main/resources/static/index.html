@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+  </head>
+  <body ng-app="myApp">
+    <div class="container" ng-controller="AppController">
+      <div class="page-header">
+        <h1>Payments</h1>
+      </div>
+      <div class="alert alert-info" role="alert" ng-hide="payments && payments.length > 0">
+        There are no payments yet.
+      </div>
+      
+      <table class="table table-hover">
+        <thead>
+      	  <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="payment in payments">
+            <td class="col-xs-2">
+              {{payment.date | date:"yyyy-MM-dd HH:mm:ss"}}
+            </td>
+            <td class="col-xs-6">
+              <input type="text" class="form-control" ng-model="payment.description" />
+            </td>
+            <td class="col-xs-2">
+              <input type="text" class="form-control" ng-model="payment.amount" />
+            </td>
+            <td class="col-xs-2">
+              <button class="btn btn-primary" type="button" title="Save" ng-click="updatePayment(payment)">
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+              <button class="btn btn-danger" type="button" title="Delete" ng-click="deletePayment(payment)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+        
+      <form class="form-horizontal" role="form" ng-submit="addPayment(newPaymentDescription, newPaymentAmount)">
+      
+        <div class="row">      
+          <div class="form-group">
+            <div class="col-xs-2">
+              <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+            </div>
+            <div class="col-xs-10">
+              <input type="text" class="form-control" id="inputPaymentDescription" ng-model="newPaymentDescription" placeholder="Enter description...">
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group">
+          	<div class="col-xs-2">
+              <label for="inputDescription" class="col-sm-2 control-label">Amount</label>
+            </div>
+            <div class="col-xs-10">
+              <input type="text" class="form-control" id="inputPaymentAmount" ng-model="newPaymentAmount" placeholder="Enter amount...">
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group">
+          	<div class="col-xs-2">
+            </div>
+            <div class="col-xs-10">
+              <button type="submit" class="btn btn-default" ng-disabled="!newPaymentDescription" title="Add">Add</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/controllers.js"></script>
+    <script type="text/javascript" src="./app/services.js"></script>
+  </body>
+</html>
