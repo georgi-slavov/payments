@@ -1,4 +1,5 @@
 # Payments Application
+Provides basic features to maintain a list of payments with date, amount and description.
 
 ## Technologies
 - Spring Boot
